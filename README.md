@@ -13,17 +13,20 @@ Alerts you before meetings with:
 
 Reads from macOS Calendar — works with Google Calendar synced into it. No API keys, no Python, no maintenance. Auto-starts on login.
 
-**Requirements:** macOS, Claude Code, Xcode CLI tools (auto-installed if missing)
+**Requirements:** macOS + Claude Code
 
-**Install:**
+### Install
 
-1. Copy the `meeting-alarm/` folder into your Claude Code skills directory
-2. In Claude Code, run: `/meeting-alarm setup`
-3. Follow the 2 prompts (Google Calendar sync + optional Spotify track)
+Paste this in Terminal:
 
-Everything else is automated.
+```bash
+curl -fsSL https://raw.githubusercontent.com/tomersh-ac/tomers-skills/main/install.sh | bash
+```
 
-**Commands:**
+Then restart Claude Code and run `/meeting-alarm setup`.
+
+### Commands
+
 | Command | What it does |
 |---|---|
 | `/meeting-alarm setup` | One-time install |
