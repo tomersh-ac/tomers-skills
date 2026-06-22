@@ -62,7 +62,8 @@ cat > "$APP/Contents/Info.plist" << 'EOF'
 <plist version="1.0">
 <dict>
   <key>CFBundleIdentifier</key><string>com.meetingalarm.overlayhelper</string>
-  <key>CFBundleName</key><string>MeetingOverlayHelper</string>
+  <key>CFBundleName</key><string>Meeting Alarm</string>
+  <key>CFBundleDisplayName</key><string>Meeting Alarm</string>
   <key>CFBundleExecutable</key><string>MeetingOverlayHelper</string>
   <key>LSUIElement</key><true/>
   <key>NSPrincipalClass</key><string>NSApplication</string>
