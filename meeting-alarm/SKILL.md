@@ -4,7 +4,7 @@ description: >
   Alerts you before meetings with a flashing red screen border, macOS notification, and optional Spotify playback.
   Reads from macOS Calendar — no Google API keys needed.
   Use when the user wants to set up, start, stop, or check the status of the meeting alarm.
-  Commands: /meeting-alarm setup, /meeting-alarm start, /meeting-alarm stop, /meeting-alarm status, /meeting-alarm spotify <URL>
+  Commands: /meeting-alarm setup, /meeting-alarm update, /meeting-alarm start, /meeting-alarm stop, /meeting-alarm status, /meeting-alarm spotify <URL>
 ---
 
 # Meeting Alarm Skill
@@ -125,6 +125,19 @@ tail -15 ~/.claude/scripts/meeting_alarm/alarm.log 2>/dev/null || echo "(no log 
 launchctl unload "$HOME/Library/LaunchAgents/com.meetingalarm.plist" 2>/dev/null && echo "Daemon stopped"
 launchctl unload "$HOME/Library/LaunchAgents/com.meetingalarm.overlay.plist" 2>/dev/null && echo "Overlay helper stopped"
 ```
+
+---
+
+### `/meeting-alarm update`
+
+Downloads the latest version from GitHub, recompiles, and restarts — preserves the user's Spotify track.
+
+Find this skill's `scripts/` directory and run:
+```bash
+bash "/path/to/skill/scripts/update.sh"
+```
+
+After it completes, confirm with: "Meeting Alarm updated! Your Spotify track is preserved."
 
 ---
 
