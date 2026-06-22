@@ -22,7 +22,7 @@ notify() {
     osascript -e "display notification \"${safe} starts in ${mins} minute(s)!\" with title \"Meeting Alert\" sound name \"Ping\""
 }
 
-show_overlay() { touch "/Users/tomershor/.claude/scripts/meeting_alarm/overlay_trigger"; }
+show_overlay() { touch "$HOME/.claude/scripts/meeting_alarm/overlay_trigger"; }
 
 play_spotify() { osascript -e 'tell application "Spotify" to play track "spotify:track:2zYzyRzz6pRmhPzyfMEC8s"' &>/dev/null || true; }
 
