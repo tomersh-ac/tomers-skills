@@ -5,6 +5,7 @@
 SCRIPTS_DIR="$HOME/.claude/scripts/meeting_alarm"
 LOG_FILE="$SCRIPTS_DIR/alarm.log"
 ALERTED_FILE="$SCRIPTS_DIR/alerted_keys.txt"
+DISABLED_FILE="$SCRIPTS_DIR/disabled"
 PID_FILE="/tmp/meeting_alarm.pid"
 POLL_INTERVAL=30
 ALERT_WINDOW=3  # minutes ahead to look
@@ -34,6 +35,12 @@ trim_alerted() {
 }
 
 while true; do
+    if [ -f "$DISABLED_FILE" ]; then
+        log "INFO Paused — skipping Calendar poll"
+        sleep "$POLL_INTERVAL"
+        continue
+    fi
+
     # Use (start date of ev) as string for key — avoids "minutes" keyword conflict
     EVENTS=$(osascript << APPLESCRIPT
 tell application "Calendar"
