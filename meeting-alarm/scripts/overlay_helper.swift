@@ -66,6 +66,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         set {
             if newValue {
                 try? FileManager.default.removeItem(atPath: disabledFile)
+                NSWorkspace.shared.launchApplication("Calendar")
             } else {
                 FileManager.default.createFile(atPath: disabledFile, contents: nil)
             }

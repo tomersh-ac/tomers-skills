@@ -41,6 +41,13 @@ while true; do
         continue
     fi
 
+    # Check Calendar is running before querying
+    if ! pgrep -x "Calendar" > /dev/null; then
+        log "WARN Calendar app is not running — cannot detect meetings. Open Calendar.app to enable alarms."
+        sleep "$POLL_INTERVAL"
+        continue
+    fi
+
     # Use (start date of ev) as string for key — avoids "minutes" keyword conflict
     EVENTS=$(osascript << APPLESCRIPT
 tell application "Calendar"
