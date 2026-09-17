@@ -48,6 +48,22 @@ while true; do
         continue
     fi
 
+    # If a meeting is coming up in the next 15 min, refresh Calendar before alerting
+    UPCOMING=$(osascript -e 'tell application "Calendar"
+        set theDate to current date
+        set soonFuture to theDate + (15 * minutes)
+        repeat with cal in calendars
+            try
+                if (count of (events of cal whose start date >= theDate and start date <= soonFuture and allday event is false)) > 0 then return "true"
+            end try
+        end repeat
+        return "false"
+    end tell' 2>/dev/null)
+    if [ "$UPCOMING" = "true" ]; then
+        osascript -e 'tell application "Calendar" to reload calendars' &>/dev/null || true
+        sleep 2
+    fi
+
     # Use (start date of ev) as string for key — avoids "minutes" keyword conflict
     EVENTS=$(osascript << APPLESCRIPT
 tell application "Calendar"
